@@ -1,0 +1,27 @@
+@font-face {
+  font-family:"Neusa-Bold";
+  src: url("./Neusa-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family:"Neusa-ExtraBold";
+  src: url("./Neusa-ExtraBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family:"GothamXNarrow-Black";
+  src: url("./GothamXNarrow-Black.otf") format("opentype");
+}
+
+@font-face {
+  font-family:"Apercu-Medium";
+  src: url("./Apercu-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family:"AApercu-Bold";
+  src: url("./Apercu-Bold.otf") format("opentype");
+}
+  
+  
+  

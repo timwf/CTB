@@ -1,5 +1,358 @@
-h1{
-  color: black;
-  font-size: 500px;
-  text-decoration: underline;
+
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    +"Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
 }
+
+$breakpoints: (
+  'sm': only screen and
+    (
+      min-width: 768px
+    ),
+  'md': only screen and
+    (
+      min-width: 1024px
+    ),
+  'lg': only screen and
+    (
+      min-width: 1280px
+    ),
+  'xl': only screen and
+    (
+      min-width: 1440px
+    ),
+  'xxl': only screen and
+    (
+      min-width: 1920px
+    )
+) !default;
+
+
+
+
+/*=============================================
+=            Global            =
+=============================================*/
+
+.content-for-layout{
+  margin-top: 75px;
+}
+
+.container{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.button{
+  width: 100%;
+  border: .18182em solid #000;
+  position: relative;
+  background: #e40421;
+  box-shadow: 0 0.68182em 0 -0.40909em #000;
+  color: #fff;
+  padding: .45455em .68182em;
+  font-family:"Neusa-Bold";
+  font-size: 22px;
+  text-transform: uppercase;
+
+  &::before{
+    top: calc(100% + .18182em);
+    position: absolute;
+    display: block;
+    content: "";
+    border-style: solid;
+    border-width: 0 .45455em .27273em 0;
+    border-color: transparent #000 transparent transparent;
+    left: -.18182em;
+  }
+
+  &:hover{
+    box-shadow: 0 0.63636em 0 -0.45455em #000;
+    color: #fff;
+    transform: translateY(.09091em);
+  }
+
+  &:hover:before {
+    border-width: 0 .45455em .18182em 0;
+    bottom: -.36364em;
+  }   
+
+  &:hover:after {
+    border-width: .18182em .45455em 0 0;
+    bottom: -.36364em;
+  } 
+
+  &::after{
+    top: calc(100% + .18182em);
+    position: absolute;
+    display: block;
+    content: "";
+    border-style: solid;
+    border-width: .27273em .45455em 0 0;
+    border-color: #000 transparent transparent;
+    right: -.18182em;
+  }
+}
+
+/*=====  End of Global  ======*/
+
+
+
+
+/*=============================================
+=            Header            =
+=============================================*/
+
+.header{
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  &__inner{
+    width: 100%;
+    background-color: red;
+    height: 55px;    
+    display: flex;
+
+
+    @include respond-to(md){
+      margin: 20px 20px 0px 20px;
+      width: calc(100% - 40px);
+    }
+  }
+
+  &__col{
+    width: 40%;
+
+    &:nth-child(2){
+      width: 20%;
+      display: flex;      
+      justify-content: center;
+    }    
+
+    &:nth-child(3){
+      padding-right: 30px;
+    } 
+  }
+
+  .icon-logo-desktop{
+    display: none;
+
+    @include respond-to(md){
+      display: block;
+      margin-top: 12px;
+    }
+  }
+
+  .icon-logo-mobile{
+    height: 40px;
+    width: 40px;
+    margin-top: 7px;
+
+    @include respond-to(md){
+      display: none;
+    }
+  }
+
+  nav{    
+    background-color: transparent;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0px;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .5s ease-in-out, visibility .5s ease-in-out;
+    // transition-delay: .2s;
+
+    &.open{
+      visibility: visible;
+      background-color: red;
+    }
+
+
+    @include respond-to(md){
+      visibility: visible;
+      display: block;
+      height: 100%;
+      position: relative;
+      top: 0;
+    }
+
+    ul{
+
+      @include respond-to(md){
+        display: flex;
+        height: 100%;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+    
+    li{
+      font-family:"Neusa-ExtraBold";
+      font-size: 36px;
+      text-transform: uppercase;      
+      font-weight: 800;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: 0.5s;
+      margin-bottom: 10px;
+
+      &.animate-in{
+        opacity: 1;
+        transform: translateY(0);
+      }
+ 
+      
+      @include respond-to(md){
+        margin-bottom: 0px;
+        font-family:"Neusa-Bold";
+        font-size: 20px;
+        margin-right: 30px; 
+        text-align: left;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        position: relative;
+
+
+        &::after{
+          content: "";
+          width: 0px;
+          height: 2px;
+          background-color: #fff;
+          position: absolute;
+          bottom: -5px;
+          left: 0px;
+          transition: 0.2s;
+        }
+
+        &:hover:after {
+          width: 100%;
+        }       
+      }
+    }
+
+    a{
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  .icon-bottles-hamburger, .icon-close{
+    position: absolute;
+    right: 20px;
+    top: 19px;
+
+    @include respond-to(md){
+      display: none !important;
+    }
+  }
+
+  .icon-close{
+    display: none;
+    right: 26px;
+  }
+}
+
+/*=====  End of Header  ======*/
+
+
+
+
+
+/*=============================================
+=            Login            =
+=============================================*/
+
+.login-wrap{
+
+  &__inner{
+    padding-top: 70px;
+
+    h1{
+      font-size: 36px;
+      text-align: center;
+      font-family:"GothamXNarrow-Black";
+      text-transform: uppercase;
+    }
+
+    h4{
+      font-family:"Apercu-Medium";
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      max-width: 386px;
+      margin: auto;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .field{
+    display: flex;
+    justify-content: center;
+  }
+
+  input{
+    margin-top: 20px;
+    border: none;
+    width: 353px;
+    font-family:"Apercu-Medium";
+    font-size: 16px;
+
+    &::placeholder {
+      font-family:"Apercu-Medium";
+      font-size: 16px;
+      color: #8A8A8A;
+    }
+  }
+
+  &__forgot{
+    font-family:"AApercu-Bold";
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: underline;
+    color: black;
+    width: 380px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+
+}
+
+/*=====  End of Login  ======*/
+
+
+

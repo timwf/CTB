@@ -364,4 +364,8 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
-@leandroruel
+
+.visually-hidden{
+  display: none;
+}
+

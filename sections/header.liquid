@@ -1,4 +1,37 @@
-<h1>heading</h1>
+<div class="header">
+  <div class="header__inner">
+    <div class="header__col">
+
+    </div>
+    <div class="header__col">
+      {% render 'icon-logo-desktop' %}
+      {% render 'icon-logo-mobile' %}
+
+    </div>
+    <div class="header__col">
+      <nav class="header__navigation">
+        <ul>
+          <li>
+            <a href="">Order Beer</a>
+          </li>
+          <li>
+            <a href="">Invoices</a>            
+          </li>
+          <li>
+            <a href="">Account</a>            
+          </li>
+          <li>
+            <a href="">Sign out</a>            
+          </li>
+        </ul>
+      </nav>
+
+      {% render 'icon-bottles-hamburger' %}
+      {% render 'icon-close' %}
+      
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {

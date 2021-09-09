@@ -23,8 +23,17 @@
           <li>
             <a href="">Sign out</a>            
           </li>
-        </ul>
+
+          {% for link in linklists.footer.links %}
+            <a href="{{ link.url }}"><li class="li-small">{{ link.title }}</li></a>
+          {% endfor %}
+
+          </ul>
+
       </nav>
+
+
+   
 
       {% render 'icon-bottles-hamburger' %}
       {% render 'icon-close' %}

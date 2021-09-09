@@ -18,10 +18,10 @@
 } */
 
 .customer ul {
-  line-height: 1.6;
+  /* line-height: 1.6;
   padding-left: 4.4rem;
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 4rem; */
 }
 
 .customer ul a {

@@ -7,13 +7,13 @@
   </div>
 
 
-  <div class="customer login container">
+  <div class="customer login ">
     <h1 id="recover" tabindex="-1">
-      {{ 'customer.recover_password.title' | t }} test
+      Reset password
     </h1>
     <div>
       <p>
-        {{ 'customer.recover_password.subtext' | t }} tesi 1
+        {{ 'customer.recover_password.subtext' | t }} 
       </p>
   
       {%- form 'recover_customer_password' -%}
@@ -33,9 +33,9 @@
             {% endif %}
             placeholder="{{ 'customer.login_page.email' | t }}"
           >
-          <label for="RecoverEmail">
+          <!-- <label for="RecoverEmail">
             {{ 'customer.login_page.email' | t }}
-          </label>
+          </label> -->
         </div>
         {%- if form.errors -%}
           <small id="RecoverEmail-email-error" class="form__message">
@@ -43,12 +43,12 @@
           </small>
         {%- endif -%}
   
-        <button>
+        <button class="button">
           {{ 'customer.login_page.submit' | t }}
         </button>
   
-        <a href="#login">
-          {{ 'customer.login_page.cancel' | t }}
+        <a href="#login" class="login__cancel">
+          <span>Back to sign in</span>
         </a>
       {%- endform -%}
     </div>
@@ -116,8 +116,8 @@
           {{ 'customer.login_page.sign_in' | t }}
         </button>
   
-        <a class="account__create" href="{{ routes.account_register_url }}">
-          {{ 'customer.login_page.create_account' | t }}
+        <a class="login__create" href="{{ routes.account_register_url }}">
+          Don't have an account yet? <span>Request One</span>  
         </a>
         
       {%- endform -%}
@@ -129,17 +129,17 @@
         <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
   
         {%- form 'guest_login' -%}
-          <button>
+          <button class="button">
             {{ 'customer.login_page.guest_continue' | t }}
           </button>
         {%- endform -%}
       </div>
     {%- endif -%}
   </div>
-
-
-
 </div>
+
+
+
 
 
 

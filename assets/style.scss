@@ -38,20 +38,33 @@ $breakpoints: (
     )
 ) !default;
 
-
-
+$brand-colour:  #D6001C !default;
 
 /*=============================================
 =            Global            =
 =============================================*/
 
+.shopify-challenge__container{
+  margin-top: 100px;
+}
+
 .content-for-layout{
   margin-top: 75px;
+  min-height: calc(100vh - 213px);
+
+  @include respond-to(md){
+    min-height: calc(100vh - 330px);
+  }
 }
 
 .container{
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include respond-to(sm){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 input:-webkit-autofill,
@@ -127,13 +140,13 @@ input:-webkit-autofill:active
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 9;
 
   &__inner{
     width: 100%;
-    background-color: red;
+    background-color: $brand-colour;
     height: 55px;    
     display: flex;
-
 
     @include respond-to(md){
       margin: 20px 20px 0px 20px;
@@ -186,13 +199,11 @@ input:-webkit-autofill:active
     justify-content: center;
     align-items: center;
     transition: background-color .5s ease-in-out, visibility .5s ease-in-out;
-    // transition-delay: .2s;
 
     &.open{
       visibility: visible;
-      background-color: red;
+      background-color: $brand-colour;
     }
-
 
     @include respond-to(md){
       visibility: visible;
@@ -223,11 +234,22 @@ input:-webkit-autofill:active
       transition: 0.5s;
       margin-bottom: 10px;
 
+      &.li-small{        
+        font-size: 14px;
+        font-family: Apercu-Medium;
+        font-weight: 400;
+        margin: 20px 0px 10px;
+        text-transform: none;
+
+        @include respond-to(md){
+          display: none;
+        }
+      }
+
       &.animate-in{
         opacity: 1;
         transform: translateY(0);
-      }
- 
+      } 
       
       @include respond-to(md){
         margin-bottom: 0px;
@@ -238,7 +260,6 @@ input:-webkit-autofill:active
         opacity: 1 !important;
         transform: translateY(0) !important;
         position: relative;
-
 
         &::after{
           content: "";
@@ -291,8 +312,12 @@ input:-webkit-autofill:active
 
 .login-wrap{
 
-  &__inner{
-    padding-top: 70px;
+  &__inner, &.login{
+    padding-top: 30px;
+
+    @include respond-to(sm){
+      padding-top: 70px;
+    }
 
     h1{
       font-size: 36px;
@@ -308,7 +333,7 @@ input:-webkit-autofill:active
       text-align: center;
       max-width: 386px;
       margin: auto;
-      margin-top: 5px;
+      margin-top: 13px;
       margin-bottom: 20px;
     }
   }
@@ -319,6 +344,24 @@ input:-webkit-autofill:active
   flex-direction: column;
   align-items: center;
 
+  h1{
+    font-size: 36px;
+    text-align: center;
+    font-family:"GothamXNarrow-Black";
+    text-transform: uppercase;
+  }
+
+  p{
+    font-family:"Apercu-Medium";
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    max-width: 386px;
+    margin: auto;
+    margin-top: 13px;
+    margin-bottom: 20px;
+  }
+
   .field{
     display: flex;
     justify-content: center;
@@ -326,16 +369,50 @@ input:-webkit-autofill:active
 
   input{
     margin-top: 20px;
+    margin-bottom: 20px;
     border: none;
-    width: 353px;
+    width: 100%;
     font-family:"Apercu-Medium";
-    font-size: 16px;
+    font-size: 14px;
+
+    @include respond-to(sm){
+      width: 353px;
+      font-size: 16px;
+    }
 
     &::placeholder {
       font-family:"Apercu-Medium";
-      font-size: 16px;
+      font-size: 14px;
       color: #8A8A8A;
+
+      @include respond-to(sm){
+        font-size: 16px;
+      }
     }
+  }
+
+  #RecoverEmail-email-error{
+    color: $brand-colour;
+    margin-bottom: 20px;
+  }
+
+  .form__message{
+    font-size: 36px;
+    text-align: center;
+    font-family: GothamXNarrow-Black;
+    text-transform: uppercase;
+    color: $brand-colour;
+  }
+
+  .errors li{
+    text-align: center;
+    color: $brand-colour;
+    font-family: Apercu-Medium;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    max-width: 386px;
+    margin: 13px auto 20px;
   }
 
   &__forgot{
@@ -344,15 +421,159 @@ input:-webkit-autofill:active
     font-weight: 800;
     text-decoration: underline;
     color: black;
-    width: 380px;
     margin-top: 32px;
     margin-bottom: 16px;
+
+    @include respond-to(sm){
+      width: 380px;
+    }
+
+    &:hover{
+      opacity: 0.6;
+    }
   }
 
+  &__create, &__cancel{
+    margin-top: 20px;
+    font-family:"Apercu-Medium";
+    font-size: 16px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 81px;
 
+    &:hover span{
+      opacity: 0.6;
+    }
+
+    span{
+      font-family:"AApercu-Bold";
+      text-decoration: underline;
+    }
+  }
 }
 
 /*=====  End of Login  ======*/
+
+
+
+/*=============================================
+=            Footer - Banner            =
+=============================================*/
+
+.footer-banner{
+  display: none;
+
+  @include respond-to(md){
+    display: block;
+  }
+
+  &__inner{
+    background-color: $brand-colour;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item{
+    display: flex;
+    align-items: center;
+    padding: 23px 20px 23px 20px;
+
+    p{
+      font-family:"GothamXNarrow-Black";
+      color: white;
+      text-transform: uppercase;
+      font-size: 21px;
+      padding-left: 20px;
+    }
+  }
+}
+
+/*=====  End of Footer - Banner  ======*/
+
+
+
+/*=============================================
+=            Footer            =
+=============================================*/
+
+.footer{
+
+  &__inner{
+    background-color: black;
+
+    padding: 17px 20px 34px;
+
+    @include respond-to(md){
+      margin: 20px;
+      padding: 34px 20px;
+    }
+  }
+
+  &__menu{
+    display: flex;
+    justify-content: center;
+
+
+    ul{
+      text-align: center;
+
+      @include respond-to(sm){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    a{
+      text-decoration: none;
+      margin: 10px 10px;
+    }
+
+    li{
+      font-family:"Apercu-Medium";
+      color: white;
+      font-size: 14px;
+
+      width: 100%;
+      position: relative;
+
+      &::after{
+        content: "";
+        width: 0px;
+        height: 1px;
+        background-color: #fff;
+        position: absolute;
+        bottom: -4px;
+        left: 0px;
+        transition: 0.2s;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }  
+    }
+  }
+
+  &__copyright{
+    text-align: center;
+    font-family:"Apercu-Medium";
+    color: #808080;
+    font-size: 14px;
+    padding-top: 30px;
+
+    @include respond-to(sm){
+      padding-top: 5px
+    }
+  }
+}
+
+/*=====  End of Footer  ======*/
+
+
+
+
 
 
 
